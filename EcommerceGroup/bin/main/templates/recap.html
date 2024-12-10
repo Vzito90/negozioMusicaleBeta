@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Recap Acquisto</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-100">
+    <!-- Navbar -->
+    <nav class="bg-gray-800 text-white py-4 shadow-md">
+      <div class="container mx-auto flex justify-between items-center">
+        <a href="/" class="text-xl font-bold">Music Store</a>
+        <ul class="flex space-x-4">
+          <li><a href="/store" class="hover:text-gray-400">Store</a></li>
+          <li><a href="/gestore" class="hover:text-gray-400">Form</a></li>
+        </ul>
+      </div>
+    </nav>
+ 
+    <!-- Container-->
+    <div class="container mx-auto p-6 bg-white rounded-lg shadow-lg mt-8">
+      <h1 class="text-2xl font-semibold mb-6 text-center">
+        Recap dell'acquisto
+      </h1>
+      <div class="overflow-x-auto">
+        <table
+          class="table-auto w-full border-collapse bg-white shadow rounded-lg"
+        >
+          <thead class="bg-gray-200">
+            <tr>
+              <th class="px-4 py-2 border">Nome</th>
+              <th class="px-4 py-2 border">Marca</th>
+              <th class="px-4 py-2 border">Prezzo</th>
+              <th class="px-4 py-2 border">Immagine</th>
+              <th class="px-4 py-2 border">Qnt</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each="strumenti : ${lista}" class="border-t">
+              <td class="px-4 py-2 border" th:text="${strumenti.nome}"></td>
+              <td class="px-4 py-2 border" th:text="${strumenti.marca}"></td>
+              <td class="px-4 py-2 border" th:text="${strumenti.prezzo}"></td>
+              <td class="px-4 py-2 border">
+                <img
+                  class="h-16 w-16 object-cover rounded-md mx-auto"
+                  th:src="${strumenti.url}"
+                  alt="Immagine"
+                />
+              </td>
+              <td class="px-4 py-2 border" th:text="${strumenti.pezzi}"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+ 
+      <div class="mt-6">
+        <h3 class="text-xl font-medium">
+          La somma da pagare è:
+          <span class="font-bold text-indigo-600" th:text="${somma}"></span>
+          euro
+        </h3>
+        <h5 class="mt-4 text-indigo-500">
+          Ricevuta del pagamento:
+          <a
+            href="#"
+            th:href="${urlRicevuta}"
+            class="text-indigo-700 underline hover:text-indigo-900"
+            >link</a
+          >
+        </h5>
+      </div>
+ 
+      <div class="mt-6">
+        <a
+          href="/store"
+          class="text-indigo-600 hover:text-indigo-900 underline"
+        >
+          &larr; Torna ad aggiungere prodotti
+        </a>
+      </div>
+    </div>
+  </body>
+</html>
